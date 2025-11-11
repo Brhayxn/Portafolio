@@ -1,19 +1,19 @@
 :root {
-  /* Colores base mejorados */
-  --bg-primary: #fefeff;
-  --bg-secondary: #f1f5f9;
-  --bg-card: #ffffff;
-  --text-primary: #1e293b;
-  --text-secondary: #64748b;
-  --accent: #6c63ff;
-  --accent-light: #8b82ff;
-  --accent-dark: #564fd8;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
-  --shadow-light: rgba(255, 255, 255, 0.8);
-  --shadow-dark: rgba(148, 163, 184, 0.15);
-  --shadow-inset: inset 2px 2px 5px rgba(148, 163, 184, 0.1);
+  /* Paleta de colores oscura mejorada */
+  --bg-primary: #0f172a;    /* Fondo principal - slate-900 */
+  --bg-secondary: #1e293b;  /* Fondo secundario - slate-800 */
+  --bg-card: #1a2439;       /* Tarjetas - slate-800/900 con un toque azulado */
+  --text-primary: #e2e8f0;  /* Texto principal - slate-100 */
+  --text-secondary: #94a3b8; /* Texto secundario - slate-400 */
+  --accent: #8b82ff;        /* Acento principal - morado claro */
+  --accent-light: #a49cff;  /* Acento claro - morado más claro */
+  --accent-dark: #6c63ff;   /* Acento oscuro - morado original */
+  --success: #10b981;       /* Verde éxito - igual que antes */
+  --warning: #f59e0b;       /* Naranja advertencia - igual que antes */
+  --error: #ef4444;         /* Rojo error - igual que antes */
+  --shadow-light: rgba(147, 97, 173, 0.3);
+  --shadow-dark: rgba(0, 0, 0, 0.5);
+  --shadow-inset: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
   --border-radius: 20px;
   --border-radius-sm: 12px;
   --border-radius-lg: 30px;
@@ -50,7 +50,7 @@ body {
   transform: translateX(-50%);
   z-index: 1000;
   backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.15);
+  background:var(--bg-primary);
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: var(--border-radius);
   padding: 12px 24px;
@@ -59,7 +59,7 @@ body {
 }
 
 .nav-glass.scrolled {
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--bg-secondary);
   backdrop-filter: none;
   border: 1px solid rgba(148, 163, 184, 0.2);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -126,6 +126,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 1vw;
+  border-radius: 40px;
   position: relative;
   overflow: hidden;
 }
@@ -137,7 +138,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(108, 99, 255, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(153, 51, 144, 0.05) 0%, transparent 70%);
   z-index: -1;
   animation: float 15s infinite ease-in-out;
 }
@@ -157,7 +158,7 @@ body {
 .hero-card {
   background: var(--bg-card);
   border-radius: var(--border-radius);
-  padding: 3rem;
+  padding: 2rem;
   text-align: center;
   box-shadow: -8px -8px 20px var(--shadow-light), 8px 8px 20px var(--shadow-dark);
   transition: var(--transition);
@@ -182,13 +183,19 @@ body {
   transform: scaleX(1);
 }
 
+.img-avatar{
+  width: 95%;
+  margin: 5vh;
+  border-radius: 50%;
+}
+
 .hero-avatar {
   margin-bottom: 2rem;
 }
 
 .avatar-placeholder {
-  width: 120px;
-  height: 120px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--accent), var(--accent-light));
   display: flex;
@@ -201,6 +208,7 @@ body {
   box-shadow: -4px -4px 12px var(--shadow-light), 4px 4px 12px var(--shadow-dark);
   transition: var(--transition);
 }
+
 
 .avatar-placeholder:hover {
   transform: scale(1.05);
@@ -322,6 +330,7 @@ body {
 }
 
 .btn-secondary {
+  text-decoration: none;
   background: var(--bg-card);
   color: var(--text-primary);
   box-shadow: -4px -4px 12px var(--shadow-light), 4px 4px 12px var(--shadow-dark);
@@ -395,10 +404,16 @@ body {
 .project-image {
   height: 200px;
   background: var(--bg-secondary);
+  padding-top: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--accent-light), var(--accent));
+}
+
+.img-gif{
+  width: 50%;
+  border-radius: 10%;
 }
 
 .project-placeholder {
@@ -780,11 +795,11 @@ button:focus,
   margin: 2vh;
   left: 0;
   width: 60vw;
-  height: 40vh;
+  height: 34vh;
   background: var(--bg-primary);
   flex-direction: column;
-  align-items: end;
-  justify-content: end;
+  align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   backdrop-filter: blur(10px);
   animation: slideIn 0.3s ease-out forwards;

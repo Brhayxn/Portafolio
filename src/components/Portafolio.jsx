@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import avatar from "/image-reference.jpeg"
+import gif_capachify from "/capachify.gif"
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
@@ -52,7 +54,9 @@ export default function Portfolio() {
         <div className="hero-container">
           <div className="hero-card">
             <div className="hero-avatar">
-              <div className="avatar-placeholder">BY</div>
+              <div className="avatar-placeholder">
+                <img className='img-avatar' src={avatar} alt="BY" />
+              </div>
             </div>
             <h1 className="hero-title">
               Hola, soy <span className="accent-text">Brhayan Yañez</span>
@@ -66,7 +70,7 @@ export default function Portfolio() {
             </div>
             <div className="hero-buttons">
               <a 
-                href="https://docs.google.com/document/d/1234567890/edit?usp=sharing" 
+                href="/Curriculum_Brhayan_Yañez.pdf" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="btn-secondary"
@@ -92,6 +96,7 @@ export default function Portfolio() {
                 <p>Sistema que mejora la eficiencia en la atención al cliente en salas de urgencias mediante una interfaz moderna desarrollada en React y un backend robusto en Node.js, facilitando triage, gestión de estados en tiempo real</p>
                 <div className="project-tags">
                   <span className="tag">React</span>
+                  <span className="tag">Web Socket</span>
                   <span className="tag">Express.js</span>
                   <span className="tag">PostgreSQL</span>
                   <span className="tag">Tailwind CSS</span>
@@ -126,10 +131,8 @@ export default function Portfolio() {
 
           <h2 className="section-title" style={{marginTop: '4rem'}}>Proyectos Personales</h2>
           <div className="projects-grid">
-            <div className="project-card">
-              <div className="project-image">
-                <div className="project-placeholder">📱</div>
-              </div>
+            <div className="project-card">  
+              <img  src={gif_capachify} alt="📱" />  
               <div className="project-content">
                 <h3>Capachify</h3>
                 <p>Sistema diseñado para reemplazar el uso de planillas en huertos, eliminando la dependencia del papel, lápiz y otros materiales físicos (como códigos QR), y generando reportes automáticos en formato PDF de manera eficiente.</p>
@@ -225,7 +228,13 @@ export default function Portfolio() {
                   Enviar email
                 </a>
               </button>
-              <button className="btn-secondary">LinkedIn</button>
+              <button className="btn-secondary">
+                <a href="https://www.linkedin.com/in/brhayan-ya%C3%B1ez-1b19012a8/"
+                  target="_blank" 
+                  style={{textDecoration:'none', color:'white'}}>
+                  LinkedIn
+                </a>
+              </button>
             </div>
           </div>
         </div>
