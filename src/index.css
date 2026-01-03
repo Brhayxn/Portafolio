@@ -411,9 +411,18 @@ body {
   background: linear-gradient(135deg, var(--accent-light), var(--accent));
 }
 
-.img-gif{
-  width: 50%;
-  border-radius: 10%;
+.project-image:has(.img-gif) {
+  height: auto;
+  padding: 0;
+  overflow: hidden;
+  display: block;
+}
+
+.img-gif {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
 .project-placeholder {
