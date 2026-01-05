@@ -1,13 +1,34 @@
 import { useState, useEffect } from 'react';
 import avatar from "/image-reference.png"
-import gif_capachify from "/capachify.gif"
+
 import Card from './cardProject';
+import ImageGalleryModal from './ImageGalleryModal';
 import { proyectosPersonales, proyectosProfesionales } from '../data/proyectsInfo';
+import {
+  SiPandas,
+  SiJupyter,
+  SiScikitlearn,
+  SiPython,
+  SiFastapi,
+  SiReact,
+  SiNodedotjs,
+  SiTypescript,
+  SiPostgresql,
+  SiMongodb,
+  SiDocker,
+  SiFlutter,
+  SiGit,
+  SiPostman,
+} from 'react-icons/si';
+
 
 export default function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [imageError, setImageError] = useState({ avatar: false, capachify: false });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalImages, setModalImages] = useState([]);
+  const [hoveredTech, setHoveredTech] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +44,16 @@ export default function Portfolio() {
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
+  };
+
+  const handleImageClick = (images) => {
+    setModalImages(images);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setModalImages([]);
   };
 
   return (
@@ -48,6 +79,7 @@ export default function Portfolio() {
             <a href="#home" className="nav-link" onClick={closeMobileMenu}>Inicio</a>
             <a href="#projects" className="nav-link" onClick={closeMobileMenu}>Proyectos</a>
             <a href="#experience" className="nav-link" onClick={closeMobileMenu}>Experiencia</a>
+            <a href="#interests" className="nav-link" onClick={closeMobileMenu}>Intereses</a>
             <a href="#contact" className="nav-link" onClick={closeMobileMenu}>Contacto</a>
           </div>
         </div>
@@ -97,7 +129,7 @@ export default function Portfolio() {
           <h2 className="section-title">Proyectos Profesionales</h2>
           <div className="projects-grid">
             {proyectosProfesionales.map((proyecto, index) => (
-              <Card key={index} {...proyecto} />
+              <Card key={index} {...proyecto} onImageClick={handleImageClick} />
             ))}
           </div>
 
@@ -106,7 +138,7 @@ export default function Portfolio() {
           </h2>
           <div className="projects-grid">
             {proyectosPersonales.map((proyecto, index) => (
-              <Card key={index} {...proyecto} />
+              <Card key={index} {...proyecto} onImageClick={handleImageClick} />
             ))}
           </div>
 
@@ -158,6 +190,54 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Interests Section */}
+      <section id="interests" className="interests-section">
+        <div className="container">
+          <h2 className="section-title">Tecnologías de Interés</h2>
+          <p className="interests-subtitle">
+            Tecnologías y herramientas que me apasionan y con las que disfruto trabajar
+          </p>
+          <div className="interests-grid">
+            {[
+              { name: 'Python', Icon: SiPython, color: '#3776AB' },
+              { name: 'Pandas', Icon: SiPandas, color: '#150458' },
+              { name: 'Jupyter', Icon: SiJupyter, color: '#F37626' },
+              { name: 'Scikit-learn', Icon: SiScikitlearn, color: '#F7931E' },
+              { name: 'FastAPI', Icon: SiFastapi, color: '#009688' },
+              { name: 'React', Icon: SiReact, color: '#61DAFB' },
+              { name: 'Node.js', Icon: SiNodedotjs, color: '#339933' },
+              { name: 'TypeScript', Icon: SiTypescript, color: '#3178C6' },
+              { name: 'PostgreSQL', Icon: SiPostgresql, color: '#336791' },
+              { name: 'MongoDB', Icon: SiMongodb, color: '#47A248' },
+              { name: 'Docker', Icon: SiDocker, color: '#2496ED' },
+              { name: 'Flutter', Icon: SiFlutter, color: '#02569B' },
+              { name: 'Git', Icon: SiGit, color: '#F05032' },
+              { name: 'Postman', Icon: SiPostman, color: '#FF6C37' },
+            ].map((tech, index) => {
+              const IconComponent = tech.Icon;
+              return (
+                <div
+                  key={tech.name}
+                  className="tech-card"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  onMouseEnter={() => setHoveredTech(tech.name)}
+                  onMouseLeave={() => setHoveredTech(null)}
+                >
+                  <div className="tech-icon">
+                    <IconComponent style={{ color: tech.color }} />
+                  </div>
+                  <div className="tech-name">{tech.name}</div>
+                  <div className="tech-glow" style={{ '--tech-color': tech.color }}></div>
+                  {hoveredTech === tech.name && (
+                    <div className="tech-ripple" style={{ '--tech-color': tech.color }}></div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="contact-section">
         <div className="container">
@@ -187,6 +267,13 @@ export default function Portfolio() {
           </div>
         </div>
       </section>
+
+      {/* Image Gallery Modal */}
+      <ImageGalleryModal
+        images={modalImages}
+        isOpen={modalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }
