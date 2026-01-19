@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import avatar from "/image-reference.png"
+import {  FaDownload } from 'react-icons/fa';
 
 import Card from './cardProject';
 import ImageGalleryModal from './ImageGalleryModal';
@@ -86,37 +87,57 @@ export default function Portfolio() {
       </nav>
       {/* Hero Section */}
       <section id="home" className="hero-section">
-        <div className="hero-container">
-          <div className="hero-card">
-            <div className="hero-avatar">
-              <div className="avatar-placeholder">
-                <img
-                  className='img-avatar'
-                  src={avatar}
-                  alt="Brhayan Yañez - Analista Programador"
-                  onError={() => setImageError(prev => ({ ...prev, avatar: true }))}
+        {/* Elemento decorativo de fondo */}
+        <div className="hero-bg-glow"></div>
+
+        <div className="container hero-content">
+          <div className="hero-text fade-in-up">
+            
+            {/* Saludo estilo Terminal */}
+            <div className="terminal-badge">
+              <span className="blink">&gt;</span> Hola mundo! Soy
+            </div>
+
+            <h1 className="hero-name">Brhayan Yañez</h1>
+            
+            <h2 className="hero-role">
+              <span className="code-bracket">{'<'}</span>
+              Analista Programador & Data Lover
+              <span className="code-bracket">{'/>'}</span>
+            </h2>
+
+            <p className="hero-bio">
+              Transformo <span className="highlight">datos</span> en decisiones y <span className="highlight">código</span> en soluciones. 
+              Especializado en el desarrollo de sistemas funcionales, automatización 
+              y análisis de datos.
+            </p>
+            
+            <div className="hero-actions">
+              <a 
+                href={`${import.meta.env.BASE_URL}Curriculum_Brhayan_Yañez.pdf`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="btn-glow"
+              >
+                <FaDownload className="btn-icon" /> Descargar CV
+              </a>
+            </div>
+          </div>
+
+          <div className="hero-image-wrapper fade-in-up delay-200">
+            {/* Contenedor del avatar con efectos */}
+            <div className="tech-avatar-container">
+              <div className="tech-ring ring-1"></div>
+              <div className="tech-ring ring-2"></div>
+              <div className="img-frame">
+                 {/* Manejo de error de imagen simplificado para el ejemplo */}
+                <img 
+                  src={avatar} 
+                  alt="Brhayan Yañez" 
+                  className="profile-img"
                 />
               </div>
-            </div>
-            <h1 className="hero-title">
-              Hola, soy <span className="accent-text">Brhayan Yañez</span>
-            </h1>
-            <p className="hero-subtitle">
-              Analista Programador orientado al desarrollo de sistemas funcionales y a la automatización de procesos, con enfoque en el uso eficiente de la información para apoyar la toma de decisiones a través del análisis de datos.
-            </p>
-            <div className="hero-quote">
-              <p>"La única constante en la tecnología es el cambio."</p>
-              <span>- William Pollard</span>
-            </div>
-            <div className="hero-buttons">
-              <a
-                href={`${import.meta.env.BASE_URL}Curriculum_Brhayan_Yañez.pdf`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary"
-              >
-                Descargar CV
-              </a>
+
             </div>
           </div>
         </div>
